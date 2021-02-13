@@ -1,0 +1,45 @@
+
+snippet register_nav_menus "Registers navigation menu locations for a wp theme." 
+register_nav_menus( array(
+	'${1:menu-name}' => esc_html__( '${2:menu-location-name}', '${3:text-domain}' ),
+) );
+endsnippet
+
+snippet wp_nav_menu "output menu with set parameter values" 
+wp_nav_menu( array $args = array(
+    'menu'              => "${1:Desired menu. Accepts a menu ID, slug, name, or object}",
+    'theme_location'    => "${2}",
+    'menu_class'        => "${3}",
+    'menu_id'           => "${4}",
+    'container'         => "${5}",
+    'container_class'   => "${6}",
+));
+endsnippet
+
+snippet php "php open / close tag" 
+<?php ${1} ?>
+
+endsnippet
+
+snippet wp_enqueue_style "Enqueue a CSS stylesheet." 
+wp_enqueue_style( '${1:handle}', get_stylesheet_directory_uri() . '/${2:src}', array(${3:deps}), null, true );
+endsnippet
+
+snippet wp_enqueue_script "Enqueue a js file"
+	wp_enqueue_script( '${1:handle}', get_template_directory_uri() . '/${2:src}', array(${3:deps}), null, true );
+endsnippet
+
+snippet wp_enqueue_jquery_from_cdn "enque jquery from cdn for quick testing purposes" b
+    wp_enqueue_script( 'jQuery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', null, null, true );
+endsnippet
+
+snippet section "section scaffold" 
+	<section class = "${1}">
+		<div class = "container">
+			<div class = "${1}__wrapper">
+				<div class = "${1}__title">
+				<div class = "${1}__text">
+			</div>
+		</div>
+	</section>
+endsnippet

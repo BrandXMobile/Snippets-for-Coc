@@ -1,0 +1,58 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet media "media query" 
+@media screen and (min-width:${1}) {
+
+}
+endsnippet
+
+snippet section "section scaffold" 
+.${1} {
+	.row--${1} {}
+	&__wrapper {}
+	&__title-wrapper {}
+	&__title {}
+	&__text-wrapper {}
+	&__text {}
+}
+endsnippet
+
+snippet fluid-imgs-mixin "mixin for fluid imgs" 
+@mixin fluid-imgs() {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+endsnippet
+
+snippet fluid-imgs-css "css for fluid imgs" 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+endsnippet

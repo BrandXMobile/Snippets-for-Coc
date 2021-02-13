@@ -1,0 +1,30 @@
+snippet pxs_noconflict_jquery "no conflict jQuery for wordpress"
+	$ = jQuery.noConflict();
+endsnippet
+
+snippet pxs_document.ready_jquery "no conflict document ready for wordpress" b
+	jQuery(document).ready(function($) {
+	});
+endsnippet
+
+snippet pxs_clickFunction_jquery "click function" 
+	$( "$1" ).click(function(event) {
+
+	});
+endsnippet
+
+snippet pxs_if_elseif_else_jquery "if elseif else statement" 
+	if($a > $b) {
+		echo "<p>A is larger than B</p>";
+	}
+	elseif($a == $b) {
+		echo "<p>A is equal to B</p>";
+	}
+	else {
+		echo "<p>B is larger than A</p>";
+	}
+endsnippet
+
+snippet pxs_include_jquery_from_cdn "include jquery from cdn" 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+endsnippet
