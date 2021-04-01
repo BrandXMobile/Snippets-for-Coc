@@ -1,4 +1,22 @@
 
+
+snippet acf_image_array "get acf image with array format return" b
+
+<?php $${1:image} = get_field(${1:image});
+if( !empty( $${1:image} ) ): ?>
+    <img src="<?php echo esc_url($${1:image}['url']); ?>" alt="<?php echo esc_attr($${1:image}['alt']); ?>" />
+<?php endif; ?>
+
+
+endsnippet
+
+
+snippet ternary "test for result, output result if result is true,  if result is false output emptiness" b
+<?php $bg_img = $result = $get_result ? $get_result : ' '; ?>
+endsnippet
+
+
+
 snippet register_nav_menus "Registers navigation menu locations for a wp theme." 
 register_nav_menus( array(
 	'${1:menu-name}' => esc_html__( '${2:menu-location-name}', '${3:text-domain}' ),
@@ -44,15 +62,36 @@ snippet section "section scaffold"
 	</section>
 endsnippet
 
+snippet get_template_part "Loads a template part into a template." b
+<?php get_template_part( 'template-parts/content', ${1}:name, array( '${2}:key' => ${3}:value)); ?>
+endsnippet
+
+snippet php-comment--single-line "a single line php comment" b
+<?php //${1} ?>
+endsnippet
+
+
+snippet php-comment--multiline "a multi-line php comment" b
+<?php 
+/**
+ * This is a
+ * multi-line
+ * comment
+ */
+?>
+endsnippet
+
+snippet html-comment--single-line "a single-line html comment" b
+<!-- ${1} -->
+endsnippet
+
 snippet wp_query "new wp query"
 
 <?php
-
 $args = array(
     'post_type' => '${1}',
 		'posts_per_page' => -1,
 );
-
 // The Query
 $the_query = new WP_Query( $args );
  
@@ -70,5 +109,35 @@ if ( $the_query->have_posts() ) {
 /* Restore original Post Data */
 wp_reset_postdata(); 
 ?>
+endsnippet
 
+snippet add-custom-image-size "add custom image size" b
+    add_image_size( 'custom-image-name', 353, 215, array( 'center', 'center'   )   );
+endsnippet
+
+snippet yoast_breadcrumb "yoast breadcrumbs" b
+<?php if ( function_exists('yoast_breadcrumb') ) {  ?>
+  <section class="breadcrumbs <?php if (get_field( 'use_grey_breadcrumb_bg' ) == 1 ): echo "bg-grey"; endif;?> ">
+    <div class="container">
+      <div class="breadcrumbs__wrapper">
+        <?php if( is_search() ): ?> 
+          <p id="breadcrumbs">
+            <span>
+              <span>
+                <a href="<?php echo get_home_url(); ?>">Home</a> &gt; 
+                <span class="breadcrumb_last" aria-current="page">Search Results</span>
+              </span>
+            </span>
+          </p>
+        <?php else: ?>
+          <?php yoast_breadcrumb( '<p id="breadcrumbs">','</p>' ); ?>
+        <?php endif; ?>
+      </div>
+    </div>
+  </section>
+<?php } ?>
+endsnippet
+
+snippet gravity_forms_shortcode "echo gravity forms shortcode " b
+<?php echo do_shortcode('[gravityform id="1" title="false" description="false" ajax="true" tabindex="49" field_values="check=First Choice,Second Choice"]'); ?>
 endsnippet

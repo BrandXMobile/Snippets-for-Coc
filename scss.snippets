@@ -30,8 +30,26 @@ snippet media "media query"
 }
 endsnippet
 
+snippet comment-multiline "multiline comment" b
+/*
+${1}
+*/
+
+endsnippet
+
+snippet comment-singleline "single line comment" b
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+endsnippet
+
+snippet map-get "get value from object 1: key, 2: value" b
+map-get(${1}, ${2});
+endsnippet
+
 snippet section "section scaffold" 
 .${1} {
+	.container {}
 	&__wrapper {}
 	&__title {}
 	&__text {}
