@@ -16,6 +16,9 @@ snippet ternary "test for result, output result if result is true,  if result is
 endsnippet
 
 
+snippet require "require file from inc/ folder in template directory" b
+require get_template_directory() . '/inc/${1}.php';
+endsnippet
 
 snippet register_nav_menus "Registers navigation menu locations for a wp theme." 
 register_nav_menus( array(
@@ -36,34 +39,98 @@ endsnippet
 
 snippet php "php open / close tag" 
 <?php ${1} ?>
+endsnippet
 
+
+snippet wp_enqueue_jquery_from_cdn "enque jquery from cdn for quick testing purposes" b
+    wp_enqueue_script( 'jQuery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', null, null, true );
+endsnippet
+
+snippet section_bem_scaffold "section BEM scaffold" 
+	<section class = "${1}">
+		<div class = "container">
+				<div class = "${1}__title"></div>
+				<div class = "${1}__text"></div>
+		</div>
+	</section>
+endsnippet
+
+snippet div_bem_scaffold "div BEM scaffold" 
+	<div class = "${1}">
+		<div class = "container">
+				<div class = "${1}__title"></div>
+				<div class = "${1}__text"></div>
+		</div>
+	</div>
+endsnippet
+
+snippet acf_get_field_if_exists "check if acf field exists, if so get field" b
+<?php $blog_intro = get_field('blog_intro', 1033); ?>
+<?php 
+if ($blog_intro) { ?>
+  <div class = "blog-intro">
+    <div class = "container">
+      <div class="blog-intro__wrapper">
+        <div class = "blog-intro__text">
+          <?php the_field( 'blog_intro', 1033 ); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+endsnippet
+
+snippet get_categories_outside_of_loop "display list of categories outside of the loop" b
+    <ul>
+      <?php
+      $args = array(
+         'orderby' => 'slug',
+         'parent' => 0
+      );
+      $categories = get_categories( $args );
+      foreach ( $categories as $category ) {
+         echo '<li><a href="' . get_category_link( $category->term_id ) . '" rel="bookmark">' . $category->name . '' . '' . $category->description . '</a></li>';
+      }
+     ?>
+    </ul>
+endsnippet
+
+
+snippet get_categories_of_post_in_loop "display the categories for the current post in the loop" b
+<?php 
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'nimblex' ) );
+			if ( $categories_list ) {
+				/* translators: 1: list of categories. */
+				printf( '<span class="cat-links">' . esc_html__( ' %1$s', 'nimblex' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+      ?>
 endsnippet
 
 snippet wp_enqueue_style "Enqueue a CSS stylesheet." 
 wp_enqueue_style( '${1:handle}', get_stylesheet_directory_uri() . '/${2:src}', array(${3:deps}), null, true );
 endsnippet
 
+snippet date_of_post "output the post date " b
+<?php $post_date = get_the_date( 'l F j, Y' ); echo $post_date;  ?>
+endsnippet
+
 snippet wp_enqueue_script "Enqueue a js file"
 	wp_enqueue_script( '${1:handle}', get_template_directory_uri() . '/${2:src}', array(${3:deps}), null, true );
 endsnippet
 
-snippet wp_enqueue_jquery_from_cdn "enque jquery from cdn for quick testing purposes" b
-    wp_enqueue_script( 'jQuery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', null, null, true );
-endsnippet
 
-snippet section "section scaffold" 
-	<section class = "${1}">
-		<div class = "container">
-			<div class = "${1}__wrapper">
-				<div class = "${1}__title">
-				<div class = "${1}__text">
-			</div>
-		</div>
-	</section>
+snippet get_gutenberg_block "get gutenberg block by id" b
+<?php 
+// get reusable gutenberg block for CTA
+      $reuse_block = get_post( 721 ); 
+      $reuse_block_content = apply_filters( 'the_content', $reuse_block->post_content);
+      echo $reuse_block_content;
+?>
 endsnippet
 
 snippet get_template_part "Loads a template part into a template." b
-<?php get_template_part( 'template-parts/content', ${1}:name, array( '${2}:key' => ${3}:value)); ?>
+<?php get_template_part( 'template-parts/content', ${1}, array( '${2}' => ${3}); ?>
 endsnippet
 
 snippet php-comment--single-line "a single line php comment" b

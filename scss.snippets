@@ -30,11 +30,70 @@ snippet media "media query"
 }
 endsnippet
 
+snippet transition "animation" b
+    transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+endsnippet
+
 snippet comment-multiline "multiline comment" b
 /*
 ${1}
 */
 
+endsnippet
+
+snippet list-with-icons "generate a list with icons object mapping" b
+
+  .list-with-icons {
+    @include list-reset();
+  }
+
+$icon-map: (
+  connectors: "images/icon-connectors.svg",
+  magnify: "images/icon-magnify.svg",
+  obtaining: "images/icon-obtaining.svg",
+  software: "images/icon-software.svg",
+  download: "images/icon-download.svg",
+  understanding: "images/icon-understanding.svg",
+  tick: "images/icon-tick.svg",
+  split: "images/icon-split.svg",
+  automated: "images/icon-automated.svg",
+  germany: "images/icon-germany.svg",
+);
+
+@each $name, $visual in $icon-map {
+  .icon-#{$name} {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    &:before {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      background-image: url($visual);
+      background-repeat: no-repeat;
+      content: ' ';
+      padding-right: 50px;
+    }
+
+    &::marker {
+      display: none;
+    }
+  }
+}
+
+
+endsnippet
+
+snippet grid "complex grid example - assign the grid areas" b
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: 
+      'post post post post'; 
+endsnippet
+
+snippet interpolate "responsive elements" b
+    @include interpolate(font-size, 1280px, 1920px, 14px, 16px );
 endsnippet
 
 snippet comment-singleline "single line comment" b
@@ -54,6 +113,22 @@ snippet section "section scaffold"
 	&__title {}
 	&__text {}
 }
+endsnippet
+
+snippet nim-block-scaffold "nimblex scaffold for block" b
+
+.${1} {
+  > .wp-block-group__inner-container {
+    @extend .container;
+  }
+  &__title {
+    @include title($medium:true);
+  }
+  &__text {
+    @include text($medium: true);
+  }
+}
+
 endsnippet
 
 snippet fluid-imgs-mixin "mixin for fluid imgs" 
