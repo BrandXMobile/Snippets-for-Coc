@@ -131,6 +131,16 @@ snippet nim-block-scaffold "nimblex scaffold for block" b
 
 endsnippet
 
+snippet font-load "Description" b
+
+@font-face {
+  font-family: '${1}';
+  src:  url('${1}.woff2') format('woff2'),
+        url('${1}.woff') format('woff');
+}
+
+endsnippet
+
 snippet fluid-imgs-mixin "mixin for fluid imgs" 
 @mixin fluid-imgs() {
     width: 100%;
