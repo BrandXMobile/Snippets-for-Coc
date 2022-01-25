@@ -133,24 +133,14 @@ add_action( 'init', 'pxs_register_taxonomies' );
 ?>
 endsnippet
 
-snippet pagination "pxs function for pagination" b
-<?php 
-// Number Pagination Function
-function pxs_number_pagination() {
-	global $wp_query;
-	$big = 9999999; // need an unlikely integer
-	echo paginate_links( array(
-		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-		'format' => '?paged=%#%',
-		'current' => max( 1, get_query_var('paged') ),
-		'total' => $wp_query->max_num_pages)
-	);
-}
 
-?>
+
+snippet get_permalink "get the permalink" b
+    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 endsnippet
 
 
 snippet do_shortcode "do shortcode" b
 <?php echo do_shortcode('[addtoany]'); ?>
 endsnippet
+

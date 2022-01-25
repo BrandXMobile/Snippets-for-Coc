@@ -24,9 +24,86 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet media "media query" 
-@media screen and (min-width:${1}) {
+snippet media-max "media max width of " 
+@media screen and (max-width:${1}) {
+}
+endsnippet
 
+snippet media-min-1280 "min tablet larger" b
+@media screen and (min-width:1280px) {
+	${1}
+}
+endsnippet
+
+snippet width100 "width 100% full width" b
+    width: 100%;
+endsnippet
+
+snippet box-shadow "2px 2px 2px 1px rgba(0, 0, 0, 0.2);" b
+/*box-shadow: offset-x offset-y blur-radius spread-radius color;*/
+box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.3);
+endsnippet
+
+snippet media-min "media min width" 
+@media screen and (min-width:${1}) {
+}
+endsnippet
+
+snippet tp "text props" b
+	color: $dark;
+	font-family: $font-family-primary;
+	font-size: $font-size-small-2;
+	line-height: $line-height-small-2;
+endsnippet
+
+snippet text-with-image-block "bem scss for text with image, with reversal layout" b
+.text-with-image {
+  $content-image-spacer: 13rem;
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    &--default-direction {
+      .content_with_image__image-wrapper {
+        @media screen and (min-width:$tablet_large) {
+          margin-right: $content-image-spacer;
+        }
+      }
+    }
+    &--direction-reversed {
+      flex-direction: row-reverse;
+      .content_with_image__image-wrapper {
+        @media screen and (min-width:$tablet_large) {
+          margin-left: $content-image-spacer;
+        }
+      }
+    }
+  }
+  &__image { flex: 1;}
+  &__content{ flex: 1;}
+  &__title {
+	color: $dark;
+	font-family: $font-family-primary;
+	font-size: $font-size-large;
+	line-height: $line-height-large;
+  }
+  &__text {
+	color: $dark;
+	font-family: $font-family-primary;
+	font-size: $font-size-small-2;
+	line-height: $line-height-small-2;
+  }
+}
+endsnippet
+
+snippet filterBtn-mixin "filter button with selected state" b
+@mixin filterBtn() {
+    padding: .4rem 2rem;
+    border: 1px solid map-get($color, mid);
+    color: map-get($color, mid);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-size: map-get($paragraphSize, small); 
 }
 endsnippet
 
@@ -34,19 +111,35 @@ snippet transition "animation" b
     transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
 endsnippet
 
-snippet comment-multiline "multiline comment" b
-/*
-${1}
-*/
+snippet animation-keyframes "Description" b
+@keyframes fadeInBtn {
+	from {
+		background-color: white;
+	}
+	75% {
+		background-color: purple;
+  }
 
+	to {
+		background-color: black;
+	}
+}
+endsnippet
+
+snippet comment-multiline "multiline comment" b
+// =============================================================================
+// ${1}
+// =============================================================================
+endsnippet
+
+snippet bgi "background-image" b
+    background-image: url('../images/${1}.jpg');
 endsnippet
 
 snippet list-with-icons "generate a list with icons object mapping" b
-
   .list-with-icons {
     @include list-reset();
   }
-
 $icon-map: (
   connectors: "images/icon-connectors.svg",
   magnify: "images/icon-magnify.svg",
@@ -80,11 +173,342 @@ $icon-map: (
     }
   }
 }
-
-
 endsnippet
 
-snippet grid "complex grid example - assign the grid areas" b
+
+snippet animation "keyframe animation transition" b
+        animation: fadein 1s;
+        @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+endsnippet
+
+//color variables
+
+snippet cred "color red" b
+color: $red;
+endsnippet
+
+snippet cnavy "color navy" b
+color: $navy;
+endsnippet
+
+snippet cwhite "color white" b
+    color: $white;
+endsnippet
+
+
+snippet clight "light 1" b
+color: $color: $light-1;
+endsnippet
+
+snippet clight2 "light 2" b
+color: $light-2;
+endsnippet
+
+snippet cdark "dark" b
+color: $dark;
+endsnippet
+
+snippet cblack "black" b
+color: $black;
+endsnippet
+
+snippet caqua "aqua" b
+color: $aqua;
+endsnippet
+
+snippet cblue "blue" b
+color: $blue;
+endsnippet
+
+snippet cgold "gold" b
+color: $gold;
+endsnippet
+
+snippet ffp "font family primary" b
+font-family: $font-family-primary;
+endsnippet
+
+snippet ffs "font family secondary" b
+font-family: $font-family-secondary;
+endsnippet
+
+snippet fwb "font weight bold" b
+font-weight: $font-weight-bold;
+endsnippet
+
+snippet fwm "font weight medium" b
+font-weight: $font-weight-medium;
+endsnippet
+
+snippet fwr "font weight regular" b
+font-weight: $font-weight-regular;
+endsnippet
+
+snippet fwsb "font weight semibold" b
+font-weight: $font-weight-semibold;
+endsnippet
+
+snippet fontWeight-map "sass map for font weights" b
+	$fontWeight: (
+		"regular": 400,
+		"medium": 500,
+		"bold": 700,
+	);
+endsnippet
+
+
+snippet child_theme_style_header "child theme style header" b
+/*
+ Theme Name:   flatsome-child 
+ Description:  Flatsome Child Theme
+ Author:       Daniel Florido 
+ Author URI:   https://pixelstorm.com.au 
+ Template:     flatsome 
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+*/
+endsnippet
+
+
+snippet breadcrumbs "yoast" b
+.breadcrumbs {
+  padding: 6rem 0;
+  &__wrapper {
+    max-width: 95vw;
+    margin: 0 auto;
+
+    #breadcrumbs {
+      color: map-get($color, mid);
+      font-size: 1.2rem;
+      font-family: map-get($fontFamily, primaryBold);
+    }
+    a {
+          color: map-get($color, primary); 
+          text-decoration: none;
+          font-family: map-get($fontFamily, primaryMedium);
+    }
+  }
+}
+endsnippet
+
+snippet bgcw "bg white" b
+    background-color: $white; 
+endsnippet
+
+snippet bgcl "bg light" b
+    background-color: $light; 
+endsnippet
+
+snippet bgcl1 "background-color light 1" b
+    background-color: $light-1; 
+endsnippet
+
+snippet bgcl2 "background-color light 2" b
+    background-color: $light-2; 
+endsnippet
+
+snippet bgcl3 "background-color light 2" b
+    background-color: $light-3; 
+endsnippet
+
+snippet bgcd "bg dark" b
+    background-color: $dark; 
+endsnippet
+
+snippet bgcd1 "background-color dark 1" b
+    background-color: $dark-1; 
+endsnippet
+
+snippet bgcblack "bg black" b
+    background-color: $black; 
+endsnippet
+
+snippet bgcaqua "bg aqua" b
+    background-color: $aqua; 
+endsnippet
+snippet bgcgold "bgc gold" b
+    background-color: $gold; 
+endsnippet
+
+snippet flex-direction-with-media-query "mobile column desktop row" b
+    flex-direction:column;
+    @media screen and (min-width:1280px) {
+      flex-direction: row;
+    }
+endsnippet
+
+snippet animation-property-stack "apply to the element you want to animate" b
+			animation-name: hoverBoxes;
+			animation-timing-function: ease-in;
+			animation-duration: 0.3s;
+			animation-fill-mode: forwards;
+endsnippet
+
+snippet flex-center-center "align item vertical and horizontal center" b
+display:flex;
+align-items: center;
+justify-content: center;
+endsnippet
+
+snippet bgcblue "bg blue" b
+    background-color: $blue; 
+endsnippet
+
+//borders
+snippet bdcw "bd white" b
+    border-color: $white; 
+endsnippet
+
+snippet bdcl "bd light" b
+    border-color: $light; 
+endsnippet
+
+snippet btn "btn mixin with wrapper using bem" b
+  &__btn-wrapper {
+    display: flex;
+  }
+
+  &__btn-link {
+    @include btn();
+  }
+endsnippet
+
+snippet link-with-underline "read more link" b
+			border-bottom: 1px solid $red;
+			color: $navy;
+			padding-bottom: rem(3px);
+			display: inline-flex;
+endsnippet
+
+snippet bdcd "bd dark" b
+    border-color: $dark; 
+endsnippet
+
+snippet bdcd1 "border-color dark 1" b
+    border-color: $dark-1; 
+endsnippet
+
+snippet bdcb "bd black" b
+    border-color: $black; 
+endsnippet
+
+snippet rgba "transparent color" b
+	color: rgba(0, 0, 0, 0.8);
+endsnippet
+
+snippet rgba-property "transparent color value" b
+	rgba(0, 0, 0, 0.8);
+endsnippet
+
+snippet bd1s "border 1px solid" b
+	border: 1px solid;
+endsnippet
+
+snippet input "input with type, number, text, email" b
+input[type=${1}]
+endsnippet
+
+snippet class "css class" b
+          .${1} {
+          }
+endsnippet
+
+snippet bc "child_class-bem" b
+          &__${1} {
+					${2}
+          }
+endsnippet
+
+snippet bm "bem modifyer" b
+          &--${1} {
+					${2}
+          }
+endsnippet
+
+snippet gform_mixin "gravityforms - apply to .gform class" b
+@mixin gform() {
+	&_wrapper {
+		background-color: $aqua;
+		padding: rem(50px);
+	}
+	&_title {
+		color: $white;
+		@include title();
+		font-size: rem(26px);
+	}
+	&_required_legend {
+		display: none;
+	}
+	&_button {
+		@include btn();
+		width: rem(200px);
+		cursor: pointer;
+		font-family: Public Sans;
+		background-color: $white;
+		color: $dark;
+		border: 0 none;
+		box-shadow: none !important;
+	}
+	&_body {
+		padding-bottom: rem(20px);
+	}
+	&_footer {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}
+endsnippet
+
+snippet gfield "gravityforms - apply to .gfield class" b
+@mixin gfield() {
+	&_label {
+		font-style: normal;
+		font-weight: 300 !important;
+		font-size: rem(14px) !important;
+		letter-spacing: -0.2px;
+		color: #ffffff;
+	}
+	.name_first,
+	.name_last {
+		label {
+			color: white;
+			font-weight: normal;
+			font-size: 11px !important;
+		}
+	}
+}
+endsnippet
+
+snippet display_number_field_arrows "display input field incriment arrows" b
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+endsnippet
+
+snippet arrow-created-with-css "white arrow pseudo created from borders" b
+	&:after {
+		content: "";
+		display: block;
+    border: solid white;
+    @include grid-media(1280px) {
+      border: solid $blue;
+    }
+		border-width: 0 2px 2px 0;
+		display: inline-block;
+		padding: 5px;
+		transform: rotate(-45deg) translate(-50%, -50%);
+		position: absolute;
+		top: calc(50% - 5px);
+		left: 50%;
+	}
+endsnippet
+
+snippet grid "simple grid - assign the grid areas" b
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr;
@@ -108,37 +532,28 @@ endsnippet
 
 snippet section "section scaffold" 
 .${1} {
-	.container {}
-	&__wrapper {}
-	&__title {}
-	&__text {}
-}
-endsnippet
-
-snippet nim-block-scaffold "nimblex scaffold for block" b
-
-.${1} {
-  > .wp-block-group__inner-container {
-    @extend .container;
-  }
+  .container {}
+  &__wrapper {}
   &__title {
-    @include title($medium:true);
   }
   &__text {
-    @include text($medium: true);
   }
 }
-
 endsnippet
 
-snippet font-load "Description" b
-
+snippet font-load "load font face from files" b
 @font-face {
-  font-family: '${1}';
-  src:  url('${1}.woff2') format('woff2'),
-        url('${1}.woff') format('woff');
+  font-family: 'Cera Pro Medium';
+  src:  url('../fonts/ceraPro-Medium.woff') format('woff'),
 }
-
+@font-face {
+  font-family: 'Cera Pro Bold';
+  src:  url('../fonts/ceraPro-Bold.woff') format('woff'),
+}
+@font-face {
+  font-family: 'Cera Pro';
+  src:  url('../fonts/ceraPro-Regular.woff') format('woff'),
+}
 endsnippet
 
 snippet fluid-imgs-mixin "mixin for fluid imgs" 
@@ -155,4 +570,296 @@ snippet fluid-imgs "css for fluid imgs"
     height: 100%;
     object-fit: cover;
     object-position: center;
+endsnippet
+
+## fontsizes
+
+snippet fs "font-size in rems" b
+		font-size: rem(${1}px);
+endsnippet
+snippet fslh "font size and line-height" b
+		font-size: rem(${1}px);
+		line-height: rem(${2}px);
+endsnippet
+snippet rem "px to rem" b
+		rem(${1}px);
+endsnippet
+snippet lh "line-height in rems" b
+		line-height: rem(${1}px);
+endsnippet
+snippet placeholder "style form placeholders" b
+			input::placeholder,
+			textarea::placeholder {
+				font-family: 'NeuzeitGro Light';
+			}
+endsnippet
+snippet height-rems "height in rems" b
+		height: rem(${1}px);
+endsnippet
+snippet width-rems "width in rems" b
+		width: rem(${1}px);
+endsnippet
+snippet ml "margin left in rems" b
+margin-left: rem(${1}px);
+endsnippet
+snippet mr "margin right in rems" b
+margin-right: rem(${1}px);
+endsnippet
+snippet mt "margin top in rems" b
+margin-top: rem(${1}px);
+endsnippet
+snippet mb "margin bottom in rems" b
+margin-bottom: rem(${1}px);
+endsnippet
+snippet pl "padding left in rems" b
+padding-left: rem(${1}px);
+endsnippet
+snippet pr "padding right in rems" b
+padding-right: rem(${1}px);
+endsnippet
+snippet pt "padding top in rems" b
+padding-top: rem(${1}px);
+endsnippet
+snippet pb "padding bottom in rems" b
+padding-bottom: rem(${1}px);
+endsnippet
+
+snippet share-btns "btns to share content to social media" b
+.share {
+	&__btn-wrapper {
+		display: flex;
+	}
+	&__btn {
+		-webkit-text-size-adjust: 100%;
+		-webkit-box-direction: normal;
+		box-sizing: inherit;
+		text-decoration: none;
+		display: flex;
+		font-weight: 700;
+		font-size: 0.8125rem;
+		line-height: 140%;
+		height: 2.5rem;
+		width: 12.5rem;
+		background: linear-gradient(90deg, #334f89 0%, #334f89 50%, #3b5998 50%, #3b5998 100%);
+		background-repeat: no-repeat;
+		background-size: 202% 100%;
+		background-position: right bottom;
+		margin-right: 1.25rem;
+		transition: all 0.5s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&-label {
+			font-family: Public Sans;
+		}
+		&--facebook {
+			.icon:before {
+				background-image: url(../svgs/icon-facebook.svg);
+				background-repeat: no-repeat;
+				content: '';
+				width: 30px;
+				height: 30px;
+				display: block;
+			}
+		}
+		&--twitter {
+			.icon:before {
+				background-image: url(../svgs/icon-twitter.svg);
+				background-repeat: no-repeat;
+				content: '';
+				width: 30px;
+				height: 30px;
+				display: block;
+			}
+		}
+	}
+}
+endsnippet
+
+snippet section_testimonial "section testimonial section bem markup" b
+.testimonial {
+	.container {
+	}
+	&__wrapper {
+	}
+	&__text {
+	}
+	&__speech-icon {
+	}
+	&__author {
+	}
+	&__company {
+	}
+	&__meta-wrapper {
+	}
+}
+endsnippet
+
+snippet author-meta "author-meta box for single post" b
+.author-meta {
+	background-color: $light;
+	&__wrapper {
+display: flex;
+padding: rem(20px);
+	}
+	&__image-wrapper {
+	}
+
+	&__meta-wrapper {
+padding: rem(30px);
+	}
+
+	&__bio {
+margin: 0;
+	}
+
+	&__name {
+margin: 0;
+				padding-bottom: rem(10px);
+	}
+
+	&__position {
+margin: 0;
+	}
+}
+endsnippet
+
+snippet section-two-col "two col section" b
+.${1} {
+  .container {
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__col-wrapper {
+    flex: 0 48%;
+  }
+
+  &__title {
+  }
+  &__subtitle {
+  }
+  &__text {
+  }
+}
+endsnippet
+
+snippet slickfix "code to overide slick variables when installing with npm" b
+// =============================================================================
+// overide slick variables so all the paths work
+// =============================================================================
+$slick-font-path: '../../node_modules/slick-carousel/slick/fonts/' !default;
+$slick-font-family: 'slick' !default;
+$slick-loader-path: '../../node_modules/slick-carousel/slick/' !default;
+$slick-arrow-color: white !default;
+endsnippet
+
+snippet slick-slider-navigation-controls "default slick native navigation arrows, set arrows to on in slick js" b
+.slick-arrow {
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	z-index: 100;
+	&:before {
+		display: none;
+	}
+	&:hover {
+		color: white;
+		outline-color: white;
+	}
+	&:focus {
+		color: white;
+		outline-color: white;
+	}
+}
+.slick-prev {
+	background-image: url('../svgs/icon-slideshow-prev-simple.svg');
+	left: -100px;
+	&:hover,
+	&:focus {
+		background-image: url('../svgs/icon-slideshow-prev-simple.svg');
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+}
+.slick-next {
+	background-image: url('../svgs/icon-slideshow-next-simple.svg');
+	right: -100px;
+	&:hover,
+	&:focus {
+		background-image: url('../svgs/icon-slideshow-next-simple.svg');
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+}
+endsnippet
+
+snippet section-text-with-image "text with image bem" b
+.text-with-image {
+	.container {
+	}
+	&__wrapper {
+		display: flex;
+	}
+	//internal content wrapper
+	&__meta-wrapper {
+		flex: 1;
+	}
+	&__title {
+	}
+	&__image {
+		flex: 1;
+	}
+	&__text {
+	}
+}
+endsnippet
+
+
+snippet padding-rems "Description" b
+padding: rem(${1}px);
+endsnippet
+
+snippet pb "padding" b
+		padding-bottom: rem(${1}px);
+endsnippet
+snippet pt "padding" b
+		padding-top: rem(${1}px);
+endsnippet
+snippet pr "padding" b
+		padding-right: rem(${1}px);
+endsnippet
+snippet pl "padding" b
+		padding-left: rem(${1}px);
+endsnippet
+snippet padding "padding" b
+		padding: rem(${1}px);
+endsnippet
+
+//fonts for kenik
+snippet ff1r "Description" b
+			font-family: 'IvyMode Regular';
+endsnippet
+snippet ff1t "Description" b
+			font-family: 'IvyMode Thin';
+endsnippet
+snippet ff1b "Description" b
+			font-family: 'IvyMode Bold';
+endsnippet
+snippet ff1l "Description" b
+			font-family: 'IvyMode Light';
+endsnippet
+
+snippet ff2l "Description" b
+			font-family: 'NeuzeitGro Light';
+endsnippet
+snippet ff2r "Description" b
+			font-family: 'NeuzeitGro Regular';
+endsnippet
+snippet ff2b "Description" b
+			font-family: 'NeuzeitGro Bold';
 endsnippet
