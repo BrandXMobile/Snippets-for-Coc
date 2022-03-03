@@ -29,8 +29,20 @@ snippet media-max "media max width of "
 }
 endsnippet
 
-snippet media-min-1280 "min tablet larger" b
+snippet media-min-1280 "min tablet small desktop" b
 @media screen and (min-width:1280px) {
+	${1}
+}
+endsnippet
+
+snippet media-min-820 "min tablet ipad air" b
+@media screen and (min-width:820px) {
+	${1}
+}
+endsnippet
+
+snippet media-min-820 "min tablet ipad mini" b
+@media screen and (min-width:768px) {
 	${1}
 }
 endsnippet
@@ -227,29 +239,6 @@ snippet cgold "gold" b
 color: $gold;
 endsnippet
 
-snippet ffp "font family primary" b
-font-family: $font-family-primary;
-endsnippet
-
-snippet ffs "font family secondary" b
-font-family: $font-family-secondary;
-endsnippet
-
-snippet fwb "font weight bold" b
-font-weight: $font-weight-bold;
-endsnippet
-
-snippet fwm "font weight medium" b
-font-weight: $font-weight-medium;
-endsnippet
-
-snippet fwr "font weight regular" b
-font-weight: $font-weight-regular;
-endsnippet
-
-snippet fwsb "font weight semibold" b
-font-weight: $font-weight-semibold;
-endsnippet
 
 snippet fontWeight-map "sass map for font weights" b
 	$fontWeight: (
@@ -297,6 +286,86 @@ endsnippet
 
 snippet bgcw "bg white" b
     background-color: $white; 
+endsnippet
+snippet bgt "bg color transparent" b
+    background-color: transparent; 
+endsnippet
+
+snippet pagination_numeric_posts_nav "styles for function pxs_numeric_posts_nav()" b
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        li {
+            margin-left: rem(6px);
+            margin-right: rem(6px);
+            &.active {
+                a {
+                    background: $blue;
+                    color: $white;
+                }
+            }
+        }
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(44px);
+            height: rem(44px);
+            border-radius: 50%;
+            border: rem(2px) solid $blue;
+
+            font-weight: bold;
+            font-size: rem(20px);
+            line-height: rem(24px);
+            text-decoration: none;
+            color: $blue;
+            &:hover {
+                color: $white; 
+            }
+        }
+
+    }
+    .next_link,
+    .prev_link {
+        a {
+            display: block;
+            text-indent: -9999px;
+            position: relative;
+             background-color: transparent; 
+            &:after{
+                position: absolute;
+                transition: all 0.5s ease;
+                content: '';
+                background: transparent url(../svgs/icon-right-arrow.svg) center no-repeat;
+                background-size: contain;
+                width: rem(14px);
+                height: rem(9px);
+                top: 14px;
+                left: 12px;
+                //transform: translate(-50%,-50%) rotate(-90deg);
+            }            
+        }
+    }
+    .prev_link {
+        a {
+            //transform: rotate(180deg);
+         
+         &:after {
+            background: transparent url(../svgs/icon-left-arrow.svg) center no-repeat;
+             background-size: contain;
+                left: 12px;
+
+         }
+        }
+    }
+}
 endsnippet
 
 snippet bgcl "bg light" b
@@ -463,6 +532,10 @@ snippet gform_mixin "gravityforms - apply to .gform class" b
 }
 endsnippet
 
+snippet colGapRem "Description" b
+		column-gap: rem(${1}px);
+endsnippet
+
 snippet gfield "gravityforms - apply to .gfield class" b
 @mixin gfield() {
 	&_label {
@@ -580,6 +653,12 @@ endsnippet
 snippet fslh "font size and line-height" b
 		font-size: rem(${1}px);
 		line-height: rem(${2}px);
+endsnippet
+snippet fp "font properties" b
+		font-weight: $1;
+		font-size: rem(${2}px);
+		line-height: rem(${3}px);
+		color: $4;
 endsnippet
 snippet rem "px to rem" b
 		rem(${1}px);
@@ -862,4 +941,39 @@ snippet ff2r "Description" b
 endsnippet
 snippet ff2b "Description" b
 			font-family: 'NeuzeitGro Bold';
+endsnippet
+snippet 404 "404 template styles - see php template" b
+.error-404 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  &__header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  &__title {
+    // font-size: 60px;
+    font-weight: bold;
+    // @include responsive(font-size, $bp-xsmall-px, $bp-large-px, 40px, 60px);
+    margin: 0;
+    @include title();
+  }
+  &__text {
+    font-weight: bold;
+    line-height: 0.75;
+    @include text();
+  }
+  &__content {
+    text-align: center;
+  }
+  &__message {
+    font-size: 24px;
+    @include text();
+  }
+  &__button {
+    @include ctabtn();
+    height: 6.4rem;
+    margin: 0 auto;
+    width: 20rem;
+  }
+}
 endsnippet
