@@ -1,7 +1,11 @@
-
-						
 snippet remove_action "remove a function from a hook" b
 remove_action ( string $hook_name 'The action hook to which the function to be removed is hooked.', callable $callback 'The name of the function which should be removed.' , int $priority = 10 );
+endsnippet
+
+snippet env_variables "Description" b
+define('LOCAL_URL', '');
+define('STAGING_URL', '');
+define('LIVE_URL', '');
 endsnippet
 
 snippet add_action "add a function to a hook" b
